@@ -6,9 +6,10 @@ SSL certificates using dns-01 domain ownership verification.
 
 This script has one optional dependency: dig.
 
-Without dig installed, a three minute delay occurs for each
-domain name.  If dig is installed, the scripts waits for tokens
-to propagate to the nameservers, which is generally faster.
+You don't have to have dig installed, but this will run faster
+if dig is installed.  Without dig, a three minute delay occurs
+for each domain name.  With dig installed, the scripts waits for
+tokens to propagate to the nameservers, which is faster.
 
 If you have a Godaddy account, you can obtain a Godaddy API key
 and secret by visiting: https://developer.godaddy.com/keys/
