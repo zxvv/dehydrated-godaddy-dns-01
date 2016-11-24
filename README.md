@@ -18,13 +18,13 @@ and secret by visiting: https://developer.godaddy.com/keys/
 Given your Godaddy API key and secret, insert them the bash
 shell commands as follows:
 
-'''text
+``` text
 export PROVIDER=godaddy
 export GD_KEY="your-godaddy-api-key-here"
 export GD_SECRET="your-godaddy-api-secret-here"
 echo "foo.com" >>domains.txt
 dehydrated --challenge dns-01 --hook godaddy.sh
-'''
+```
 
 ## Resources:
 + dehydrated: https://github.com/lukas2511/dehydrated
