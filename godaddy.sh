@@ -50,7 +50,7 @@ function deploy_challenge {
 
     if command -v dig >/dev/null 2>&1 ;then
         # Wait until the TOKEN_VALUE appears on all of the nameservers for the domain.
-        # This prints a dot (.) every two seconds to show progress.
+        # This prints a dot (.) every second to show progress.
         
         # Why? Although Godaddy may update the DNS records in seconds
         # in some cases, delays of several minutes or more have been
