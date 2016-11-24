@@ -49,10 +49,6 @@ function deploy_challenge {
     echo
 
     if command -v dig >/dev/null 2>&1 ;then
-        echo " + dig is not installed, so we sleep for three minutes for tokens to appear in nameservers."
-        echo " + Installing dig will reduce the wait duration."
-        sleep 180
-    else
         # Wait until the TOKEN_VALUE appears on all of the nameservers for the domain.
         # This prints a dot (.) every two seconds to show progress.
         
@@ -62,17 +58,20 @@ function deploy_challenge {
         
         echo -n " + waiting for ${TOKEN_VALUE} in the _acme-challenge.${DOMAIN} TXT record on all nameservers:"
         NSLIST=$(dig +short NS ${PARENT})
-        DONE=0
-        while [[ $DONE == 0 ]]; do 
-            sleep 2                 # sleep until the token is present on the name server
+        while true; do 
             DONE=1
             for NS in ${NSLIST}; do
-                dig +noall +answer -t txt $NS _acme-challenge.${DOMAIN}|grep -qe ${TOKEN_VALUE} || DONE=0
+                dig +noall +answer -t txt @$NS _acme-challenge.${DOMAIN}|grep -qe ${TOKEN_VALUE} || DONE=0
             done
+            [[ ${DONE} == 1 ]] && break
+            sleep 1                 # sleep until the token is present on the name server
             echo -n .
         done
-        sleep 2                     # additional delay to allow for letsencrypt cache effects.
         echo
+    else
+        echo " + dig is not installed, so we sleep for three minutes for tokens to appear in nameservers."
+        echo " + Installing dig will reduce the wait duration."
+        sleep ${DNS_UPDATE_DELAY:-180}
     fi
 
     # This hook is called once for every domain that needs to be

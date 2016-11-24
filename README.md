@@ -41,12 +41,24 @@ echo "foo.com" >domains.txt
 ```
 ### Caveats:
 
-Due to limiations of the Godaddy API, it is not feasible for
+In certain cases, a fixed delay of three minutes may be
+insufficient, resulting in failure.  The fixed delay can be
+altered by setting DNS_UPDATE_DELAY.  The following example sets
+the delay to ten minutes:
+
+``` text
+export DNS_UPDATE_DELAY 600
+```
+
+Due to limitations of the Godaddy API, it is not feasible for
 this hook to remove the "_acme-challenge" TXT records from the
 DNS zone file, unless it imposed additional installation
 dependencies.  For this reason, during cleanup, this script sets
 the TXT value of the "_acme-challenge" records to "delete-me",
-to identfy them for later cleanup.
+to identify them for later cleanup.
+
+
+
 
 ### Resources:
 + dehydrated: https://github.com/lukas2511/dehydrated
