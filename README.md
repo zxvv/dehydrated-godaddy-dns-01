@@ -26,6 +26,14 @@ export GD_SECRET="your-godaddy-api-secret-here"
 echo "foo.com" >>domains.txt
 dehydrated --challenge dns-01 --hook godaddy.sh
 ```
+## Caveats:
+
+Due to limiations of the Godaddy API, it is not feasible for
+this hook to remove the "_acme-challenge" TXT records from the
+DNS zone file, unless it imposed additional installation
+dependencies.  For this reason, during cleanup, this script sets
+the TXT value of the "_acme-challenge" records to "delete-me",
+to identfy them for later cleanup.
 
 ## Resources:
 + dehydrated: https://github.com/lukas2511/dehydrated
