@@ -18,7 +18,9 @@ and secret by visiting: https://developer.godaddy.com/keys/
 
 ``` text
 # install letsencrypt.sh dependencies
-sudo apt-get install -y openssl curl sed grep mktemp git dig
+sudo apt-get install -y openssl curl sed grep mktemp git
+# install optional godaddy.sh dependency
+sudo apt-get install -y dig
 # install letsencrypt.sh
 git clone https://github.com/lukas2511/dehydrated.git
 cd dehydrated
