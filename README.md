@@ -14,6 +14,17 @@ tokens to propagate to the nameservers, which is faster.
 If you have a Godaddy account, you can obtain a Godaddy API key
 and secret by visiting: https://developer.godaddy.com/keys/
 
+### Install:
+
+``` text
+# install letsencrypt.sh dependencies
+sudo apt-get install -y openssl curl sed grep mktemp git dig
+# install letsencrypt.sh
+git clone https://github.com/lukas2511/dehydrated.git
+cd dehydrated
+curl -O https://raw.githubusercontent.com/zxvv/dehydrated-godaddy-dns-01/master/godaddy.sh
+```
+
 ### Usage:
 
 Given your Godaddy API key and secret, insert them the bash
@@ -24,7 +35,7 @@ export PROVIDER=godaddy
 export GD_KEY="your-godaddy-api-key-here"
 export GD_SECRET="your-godaddy-api-secret-here"
 echo "foo.com" >domains.txt
-dehydrated --challenge dns-01 --hook godaddy.sh
+./dehydrated --challenge dns-01 --hook godaddy.sh
 ```
 ### Caveats:
 
@@ -37,6 +48,7 @@ to identfy them for later cleanup.
 
 ### Resources:
 + dehydrated: https://github.com/lukas2511/dehydrated
-+ a similar godaddy hook: https://github.com/josteink/le-godaddy-dns
++ How to install dehydrated: http://blog.thesparktree.com/post/138999997429/generating-intranet-and-private-network-ssl
++ Another godaddy API hook: https://github.com/josteink/le-godaddy-dns
 + Godaddy API documentation: https://developer.godaddy.com/doc#!/_v1_domains
 + Godaddy API keys: https://developer.godaddy.com/keys/
