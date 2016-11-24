@@ -23,7 +23,7 @@ shell commands as follows:
 export PROVIDER=godaddy
 export GD_KEY="your-godaddy-api-key-here"
 export GD_SECRET="your-godaddy-api-secret-here"
-echo "foo.com" >>domains.txt
+echo "foo.com" >domains.txt
 dehydrated --challenge dns-01 --hook godaddy.sh
 ```
 ### Caveats:
