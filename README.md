@@ -35,7 +35,7 @@ dependencies.  For this reason, during cleanup, this script sets
 the TXT value of the "_acme-challenge" records to "delete-me",
 to identfy them for later cleanup.
 
-## Resources:
+### Resources:
 + dehydrated: https://github.com/lukas2511/dehydrated
 + a similar godaddy hook: https://github.com/josteink/le-godaddy-dns
 + Godaddy API documentation: https://developer.godaddy.com/doc#!/_v1_domains
