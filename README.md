@@ -14,7 +14,7 @@ tokens to propagate to the nameservers, which is faster.
 If you have a Godaddy account, you can obtain a Godaddy API key
 and secret by visiting: https://developer.godaddy.com/keys/
 
-## Usage:
+### Usage:
 
 Given your Godaddy API key and secret, insert them the bash
 shell commands as follows:
@@ -26,7 +26,7 @@ export GD_SECRET="your-godaddy-api-secret-here"
 echo "foo.com" >>domains.txt
 dehydrated --challenge dns-01 --hook godaddy.sh
 ```
-## Caveats:
+### Caveats:
 
 Due to limiations of the Godaddy API, it is not feasible for
 this hook to remove the "_acme-challenge" TXT records from the
