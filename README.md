@@ -1,18 +1,21 @@
 ## Godaddy.sh
 
+Use this script to get SSL certificates using your Godaddy API key.
+
+To get the required Godaddy API key visit: https://developer.godaddy.com/keys/
+
+### How does it work?
+
 This script is a hook for [dehydrated](https://github.com/lukas2511/dehydrated) which uses the [Godaddy
 API](https://developer.godaddy.com/doc#!/_v1_domains) to obtain
 SSL certificates using dns-01 domain ownership verification.
 
-This script has one optional dependency: dig.
+You need only dehydrated to use this script; however, it will run much faster if dig is installed.
 
-You don't have to have dig installed, but this will run faster
-if dig is installed.  Without dig, a three minute delay occurs
-for each domain name.  With dig installed, the scripts waits for
-tokens to propagate to the nameservers, which is faster.
-
-If you have a Godaddy account, you can obtain a Godaddy API key
-and secret by visiting: https://developer.godaddy.com/keys/
+Without dig, a three minute delay occurs
+for each DNS entry to propagate to nameservers.
+With dig installed, the scripts watches the nameservers,
+and finishes as soon as it sees the tokens appear.
 
 ### Install:
 
@@ -29,8 +32,8 @@ curl -O https://raw.githubusercontent.com/zxvv/dehydrated-godaddy-dns-01/master/
 
 ### Usage:
 
-Given your Godaddy API key and secret, insert them the bash
-shell commands as follows:
+Given your Godaddy API key and secret, set them as environment variables in your bash
+shell, and invoke dehydrated as follows:
 
 ``` text
 export PROVIDER=godaddy
@@ -51,14 +54,11 @@ export DNS_UPDATE_DELAY 600
 ```
 
 Due to limitations of the Godaddy API, it is not feasible for
-this hook to remove the "_acme-challenge" TXT records from the
-DNS zone file, unless it imposed additional installation
+a shell script to remove the "_acme-challenge" TXT records from the
+DNS zone file -- at least, not without requiring additional installation
 dependencies.  For this reason, during cleanup, this script sets
 the TXT value of the "_acme-challenge" records to "delete-me",
 to identify them for later cleanup.
-
-
-
 
 ### Resources:
 + dehydrated: https://github.com/lukas2511/dehydrated
