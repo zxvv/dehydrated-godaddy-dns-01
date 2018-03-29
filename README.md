@@ -66,3 +66,7 @@ to identify them for later cleanup.
 + Another godaddy API hook: https://github.com/josteink/le-godaddy-dns
 + Godaddy API documentation: https://developer.godaddy.com/doc#!/_v1_domains
 + Godaddy API keys: https://developer.godaddy.com/keys/
+
+### Note:
+
+Godaddy developer website will lead you to unlimited javascript error or gateway timeout, try use firefox if it occurred.
